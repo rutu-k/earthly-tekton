@@ -1,0 +1,38 @@
+VERSION 0.8
+functional-build:
+  LOCALLY
+  RUN echo "functional-build Completed" 
+
+functional-unit-test:
+  LOCALLY
+  RUN echo "functional-unit-test Completed" 
+
+security-checks-static-code-analysis:
+  LOCALLY
+  RUN echo "security-checks-static-code-analysis Completed" 
+
+security-checks-quality-gate:
+  LOCALLY
+  RUN echo "security-checks-quality-gate Completed" 
+
+container-create:
+  LOCALLY
+  RUN echo "container-create Completed" 
+
+container-scan:
+  LOCALLY
+  RUN echo "container-scan Completed" 
+
+container-push:
+  LOCALLY
+  RUN echo "container-push Completed" 
+
+all:
+ BUILD +functional-build
+ BUILD +functional-unit-test
+ BUILD +security-checks-static-code-analysis
+ BUILD +security-checks-quality-gate
+ BUILD +container-create
+ BUILD +container-scan
+ BUILD +container-push
+
