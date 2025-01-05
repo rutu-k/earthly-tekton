@@ -1,0 +1,31 @@
+version: 1.0.0
+ci:
+  context: internal/application/IAC
+  pr:
+    functional:
+      build: yes
+      unit-test: yes
+    security-checks:
+      secret-check: yes
+      licence-analysis: yes
+      snyk-run: yes
+    non-functional:
+      java-linting: yes
+      terraform-linting: yes
+      docker-linting: yes
+      k8s-linting: yes
+  merge:
+    functional:
+      build: yes
+      unit-test: yes
+    security-checks:
+      static-code-analysis: yes
+      quality-gate: yes
+    container:
+      create: yes
+      scan: yes
+      push: yes
+    non-functional:
+      java-linting: no
+      terraform-linting: no
+      docker-linting: no
