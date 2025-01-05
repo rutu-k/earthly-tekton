@@ -24,9 +24,10 @@ jobs:
     - name: Generate Earthfile
       run: |
         cd ci
-        pwd
         chmod +x ./generate-earthfile.sh
         ./generate-earthfile.sh
+        cat Earthfile
+        mkdir resources/
         mv Earthfile resources/Earthfile
 
     - name: Commit Earthfile
