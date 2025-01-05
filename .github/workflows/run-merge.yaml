@@ -1,0 +1,29 @@
+name: Run Earthfile +all on Merge
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-earthfile:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Earthly
+      run: |
+        curl -sL https://github.com/earthly/earthly/releases/download/v0.7.8/earthly-linux-amd64 -o /usr/local/bin/earthly
+        chmod +x /usr/local/bin/earthly
+        earthly --version
+
+    - name: Run +all in Earthfile
+      run: |
+        cd ci/resources/merge
+        earthly +all
+
+    - name: Display Success Message
+      if: success()
+      run: echo "✅ All checks passed successfully after branch merge!"
