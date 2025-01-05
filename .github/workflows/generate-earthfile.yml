@@ -1,0 +1,39 @@
+name: Generate and Commit Earthfile
+
+on:
+  push:
+    paths:
+      - 'ci/input.yaml'
+  workflow_dispatch:
+
+jobs:
+  generate-earthfile:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y jq
+        wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/local/bin/yq
+        chmod +x /usr/local/bin/yq
+
+    - name: Generate Earthfile
+      run: |
+        cd ci
+        chmod +x ./generate-earthfile.sh
+        ./generate-earthfile.sh
+        mv Earthfile resources/Earthfile
+
+    - name: Commit Earthfile
+      run: |
+        git config --local user.name "GitHub Actions Bot"
+        git config --local user.email "actions@github.com"
+        git add ci/resources/Earthfile
+        git commit -m "Update Earthfile based on input.yaml" || echo "No changes to commit"
+
+    - name: Push changes
+      run: git push
