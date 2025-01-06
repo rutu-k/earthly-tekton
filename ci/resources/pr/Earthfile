@@ -23,5 +23,5 @@ all:
  BUILD +functional-build
  BUILD +functional-unit-test
  BUILD +security-checks-secret-checks
- BUILD +security-license-analysis
+ BUILD +security-checks-license-analysis
  BUILD +security-checks-snyk-run
