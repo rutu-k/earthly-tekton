@@ -1,0 +1,27 @@
+VERSION 0.8
+functional-build:
+  LOCALLY
+  RUN echo "functional-build Completed" 
+
+functional-unit-test:
+  LOCALLY
+  RUN echo "functional-unit-test Completed" 
+
+security-checks-secret-checks:
+  LOCALLY
+  RUN echo "security-checks-secret-checks Completed" 
+
+security-checks-license-analysis:
+  LOCALLY
+  RUN echo "security-checks-license-analysis Completed"
+
+security-checks-snyk-run:
+  LOCALLY
+  RUN echo "security-checks-snyk-run Completed" 
+
+all:
+ BUILD +functional-build
+ BUILD +functional-unit-test
+ BUILD +security-checks-secret-checks
+ BUILD +security-license-analysis
+ BUILD +security-checks-snyk-run
