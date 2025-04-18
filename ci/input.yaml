@@ -8,7 +8,7 @@ ci:
     security-checks:
       secret-check: yes
       licence-analysis: yes
-      snyk-run: yes
+      code-check: yes
     non-functional:
       java-linting: yes
       terraform-linting: yes
